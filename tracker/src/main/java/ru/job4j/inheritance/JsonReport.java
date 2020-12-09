@@ -3,6 +3,7 @@ package ru.job4j.inheritance;
 public class JsonReport extends TextReport {
     private static final String LN = System.lineSeparator();
 
+    @Override
     public String generate(String name, String body) {
         return "{" + LN
                 + "\"name\"" + " : " + "\"" + name + "\"" + "," + LN
