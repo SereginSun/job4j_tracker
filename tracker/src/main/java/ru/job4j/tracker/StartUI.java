@@ -1,22 +1,19 @@
 package ru.job4j.tracker;
 
 import java.time.format.DateTimeFormatter;
-import java.util.Scanner;
 
 public class StartUI {
 
-    public void init(Scanner scanner, Tracker tracker) {
+    public void init(Input input, Tracker tracker) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
         boolean run = true;
         while (run) {
             this.showMenu();
-            System.out.println("Select: ");
-            int select = Integer.parseInt(scanner.nextLine());
+            int select = Integer.parseInt(input.askStr("Select menu item: "));
             switch (select) {
                 case 0:
                     System.out.println("=== Create a new Item ===");
-                    System.out.print("Enter name: ");
-                    String name = scanner.nextLine();
+                    String name = input.askStr("Enter name: ");
                     Item newItem = new Item(name);
                     tracker.add(newItem);
                     break;
@@ -30,10 +27,8 @@ public class StartUI {
                     break;
                 case 2:
                     System.out.println("=== Edit Item ===");
-                    System.out.println("Enter the item ID for editing: ");
-                    int id = Integer.parseInt(scanner.nextLine());
-                    System.out.print("Enter new name of item: ");
-                    String newName = scanner.nextLine();
+                    int id = input.askInt("Enter the item ID for editing: ");
+                    String newName = input.askStr("Enter new name of item: ");
                     Item editableItem = new Item(newName);
                     if (tracker.replace(id, editableItem)) {
                         System.out.println("The item has been successfully edited.");
@@ -43,8 +38,7 @@ public class StartUI {
                     break;
                 case 3:
                     System.out.println("=== Delete Item ===");
-                    System.out.println("Enter the item ID for deleting: ");
-                    int idDel = Integer.parseInt(scanner.nextLine());
+                    int idDel = input.askInt("Enter the item ID for deleting: ");
                     if (tracker.delete(idDel)) {
                         System.out.println("The item has been successfully deleted.");
                     } else {
@@ -53,8 +47,7 @@ public class StartUI {
                     break;
                 case 4:
                     System.out.println("=== Find Item by ID ===");
-                    System.out.println("Enter the item ID for searching: ");
-                    int idWant = Integer.parseInt(scanner.nextLine());
+                    int idWant = input.askInt("Enter the item ID for searching: ");
                     Item wantedItem = tracker.findById(idWant);
                     if (wantedItem != null) {
                         System.out.printf("%d%10s%22s%n",
@@ -65,8 +58,7 @@ public class StartUI {
                     break;
                 case 5:
                     System.out.println("=== Find Items by name ===");
-                    System.out.println("Enter the item name for searching: ");
-                    String wantedName = scanner.nextLine();
+                    String wantedName = input.askStr("Enter the item name for searching: ");
                     Item[] items = tracker.findByName(wantedName);
                     if (items.length > 0) {
                         for (var item : items) {
@@ -98,8 +90,8 @@ public class StartUI {
     }
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Input input = new ConsoleInput();
         Tracker tracker = new Tracker();
-        new StartUI().init(scanner, tracker);
+        new StartUI().init(input, tracker);
     }
 }
