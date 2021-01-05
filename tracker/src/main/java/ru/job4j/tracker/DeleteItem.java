@@ -1,18 +1,25 @@
 package ru.job4j.tracker;
 
 public class DeleteItem implements UserAction {
+    private final Output out;
+
+    public DeleteItem(Output out) {
+        this.out = out;
+    }
+
     @Override
     public String name() {
-        return "=== Delete Item ===";
+        return "Delete an Item.";
     }
 
     @Override
     public boolean execute(Input input, Tracker tracker) {
+        out.println("=== Deleting an Item ===");
         int idDel = input.askInt("Enter the item ID for deleting: ");
         if (tracker.delete(idDel)) {
-            System.out.println("The item has been successfully deleted.");
+            out.println("The item has been successfully deleted.");
         } else {
-            System.out.println("No item found with the specified ID.");
+            out.println("No item found with the specified ID.");
         }
         return true;
     }

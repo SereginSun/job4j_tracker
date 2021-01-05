@@ -1,20 +1,27 @@
 package ru.job4j.tracker;
 
 public class EditItem implements UserAction {
+    private final Output out;
+
+    public EditItem(Output out) {
+        this.out = out;
+    }
+
     @Override
     public String name() {
-        return "=== Replace an Item ===";
+        return "Edit.";
     }
 
     @Override
     public boolean execute(Input input, Tracker tracker) {
+        out.println("=== Editing an Item ===");
         int id = input.askInt("Enter the item ID for editing: ");
         String newName = input.askStr("Enter new name of item: ");
         Item editableItem = new Item(newName);
         if (tracker.replace(id, editableItem)) {
-            System.out.println("The item has been successfully edited.");
+            out.println("The item has been successfully edited.");
         } else {
-            System.out.println("No item found with the specified ID.");
+            out.println("No item found with the specified ID.");
         }
         return true;
     }

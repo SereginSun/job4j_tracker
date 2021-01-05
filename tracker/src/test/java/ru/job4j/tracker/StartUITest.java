@@ -13,8 +13,9 @@ public class StartUITest {
         String[] answers = {"0", "Fix PC", "1"};
         Input in = new StubInput(answers);
         Tracker tracker = new Tracker();
+        Output out = new StubOutput();
         UserAction[] actions = {
-                new CreateItem(),
+                new CreateItem(out),
                 new ExitAction()
         };
         new StartUI().init(in, tracker, actions);
@@ -30,8 +31,9 @@ public class StartUITest {
         tracker.add(item);
         String[] answers = {"0", String.valueOf(item.getId()), "replaced item", "1"};
         Input in = new StubInput(answers);
+        Output out = new StubOutput();
         UserAction[] actions = {
-                new EditItem(),
+                new EditItem(out),
                 new ExitAction()
         };
         new StartUI().init(in, tracker, actions);
@@ -46,8 +48,9 @@ public class StartUITest {
         tracker.add(item);
         String[] answers = {"0", String.valueOf(item.getId()), "1"};
         Input in = new StubInput(answers);
+        Output out = new StubOutput();
         UserAction[] actions = {
-                new DeleteItem(),
+                new DeleteItem(out),
                 new ExitAction()
         };
         new StartUI().init(in, tracker, actions);
