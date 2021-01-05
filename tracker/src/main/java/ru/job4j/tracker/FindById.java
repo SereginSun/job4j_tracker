@@ -24,7 +24,7 @@ public class FindById implements UserAction {
         if (wantedItem != null) {
             out.println(wantedItem.getId()
                             + ". " + wantedItem.getName()
-                            + "   " + FORMATTER.format(wantedItem.getCreated())
+                            + "    " + FORMATTER.format(wantedItem.getCreated())
             );
             out.println("");
         } else {
