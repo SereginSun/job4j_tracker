@@ -14,13 +14,27 @@ public class FindEl {
         return result;
     }
 
-    public static void main(String[] args) {
-        String[] value = {"Hello", "echo", "start", "celebrate"};
+    public static void sent(String value, String[] abuses) throws ElementAbuseException {
+        for (String abuse : abuses) {
+            if (value.equals(abuse)) {
+                throw new ElementAbuseException("The key is included in the keys of prohibited keys.");
+            }
+        }
+    }
+
+    public static void process(String[] values, String key, String[] abuses) {
         try {
-            int rsl = indexOf(value, "Echo");
-            System.out.println(rsl);
-        } catch (ElementNotFoundException e) {
+            if (indexOf(values, key) != -1) {
+                sent(key, abuses);
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) {
+        String[] value = {"Hello", "echo", "start", "celebrate"};
+        String[] abuse = {"no", "echo"};
+        process(value, "echo", abuse);
     }
 }
