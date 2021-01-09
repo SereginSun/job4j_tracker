@@ -10,21 +10,24 @@ public class ValidateInput implements Input {
     }
 
     @Override
-    public String askStr(String question) {
-        return in.askStr(question);
+    public String ask(String question) {
+        return in.ask(question);
     }
 
     @Override
-    public int askInt(String question) {
+    public int ask(String question, UserAction[] actions) {
         boolean invalid = true;
         int value = -1;
         do {
             try {
-                value = in.askInt(question);
+                value = in.ask(question, actions);
                 invalid = false;
             } catch (NumberFormatException nfe) {
-                System.out.println("Please enter validate data again.");
-                System.out.println();
+                out.println("Please enter validate data again.");
+                out.println("");
+            } catch (MenuOutException moe) {
+                out.println("Please enter the item number from the menu.");
+                out.println("");
             }
         } while (invalid);
         return value;

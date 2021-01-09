@@ -19,7 +19,7 @@ public class FindByName implements UserAction {
     @Override
     public boolean execute(Input input, Tracker tracker) {
         out.println("=== Finding Item by name ===");
-        String wantedName = input.askStr("Enter the item name for searching: ");
+        String wantedName = input.ask("Enter the item name for searching: ");
         Item[] items = tracker.findByName(wantedName);
         if (items.length > 0) {
             for (var item : items) {

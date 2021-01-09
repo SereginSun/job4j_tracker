@@ -19,12 +19,16 @@ public class StartUI {
         boolean run = true;
         while (run) {
             this.showMenu(actions);
-            int select = input.askInt("Select menu item: ");
-            if (select < 0 || select >= actions.length) {
-                out.println("Wrong input, you can select: 0..." + (actions.length - 1));
-                out.println("");
-                continue;
-            }
+//            int[] range = new int[actions.length];
+//            for (int i = 0; i < actions.length; i++) {
+//                range[i] = i;
+//            }
+            int select = input.ask("Select menu item: ", actions);
+//            if (select < 0 || select >= actions.length) {
+//                out.println("Wrong input, you can select: 0..." + (actions.length - 1));
+//                out.println("");
+//                continue;
+//            }
             UserAction action = actions[select];
             run = action.execute(input, tracker);
         }
