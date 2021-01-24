@@ -26,10 +26,10 @@ public class FindById implements UserAction {
                             + ". " + wantedItem.getName()
                             + "    " + FORMATTER.format(wantedItem.getCreated())
             );
-            out.println("");
         } else {
             out.println("No item found with the specified ID.");
         }
+        out.println("");
         return true;
     }
 }

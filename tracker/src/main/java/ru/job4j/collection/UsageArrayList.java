@@ -11,5 +11,6 @@ public class UsageArrayList {
         for (var name: namesList) {
             System.out.println(name);
         }
+        System.out.println(namesList.indexOf("Petr"));
     }
 }

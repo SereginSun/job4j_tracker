@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 public class ShowAllItems implements UserAction {
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
@@ -19,8 +20,8 @@ public class ShowAllItems implements UserAction {
     @Override
     public boolean execute(Input input, Tracker tracker) {
         out.println("=== Show all Items.===");
-        Item[] allItems = tracker.findAll();
-        if (allItems.length == 0) {
+        List<Item> allItems = tracker.findAll();
+        if (allItems.size() == 0) {
             out.println("No items");
         }
         for (var item : allItems) {

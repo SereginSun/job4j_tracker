@@ -1,5 +1,8 @@
 package ru.job4j.tracker;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StartUI {
     private final Output out;
 
@@ -7,29 +10,20 @@ public class StartUI {
         this.out = out;
     }
 
-    private void showMenu(UserAction[] actions) {
+    private void showMenu(List<UserAction> actions) {
         out.println("Menu.");
-        for (int i = 0; i < actions.length; i++) {
-            out.println(i + ". " + actions[i].name());
+        for (int i = 0; i < actions.size(); i++) {
+            out.println(i + ". " + actions.get(i).name());
         }
         out.println("");
     }
 
-    public void init(Input input, Tracker tracker, UserAction[] actions) {
+    public void init(Input input, Tracker tracker, List<UserAction> actions) {
         boolean run = true;
         while (run) {
             this.showMenu(actions);
-//            int[] range = new int[actions.length];
-//            for (int i = 0; i < actions.length; i++) {
-//                range[i] = i;
-//            }
             int select = input.ask("Select menu item: ", actions);
-//            if (select < 0 || select >= actions.length) {
-//                out.println("Wrong input, you can select: 0..." + (actions.length - 1));
-//                out.println("");
-//                continue;
-//            }
-            UserAction action = actions[select];
+            UserAction action = actions.get(select);
             run = action.execute(input, tracker);
         }
     }
@@ -38,15 +32,14 @@ public class StartUI {
         Output output = new ConsoleOutput();
         Input input = new ValidateInput(output, new ConsoleInput());
         Tracker tracker = new Tracker();
-        UserAction[] actions = {
-                new ShowAllItems(output),
-                new CreateItem(output),
-                new EditItem(output),
-                new DeleteItem(output),
-                new FindById(output),
-                new FindByName(output),
-                new ExitAction()
-        };
+        List<UserAction> actions = new ArrayList<>();
+        actions.add(new ShowAllItems(output));
+        actions.add(new CreateItem(output));
+        actions.add(new EditItem(output));
+        actions.add(new DeleteItem(output));
+        actions.add(new FindById(output));
+        actions.add(new FindByName(output));
+        actions.add(new ExitAction());
         new StartUI(output).init(input, tracker, actions);
     }
 }

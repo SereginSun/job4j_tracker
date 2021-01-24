@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import java.util.List;
+
 public class StubInput implements Input {
     private final String[] answers;
     private int position = 0;
@@ -14,10 +16,10 @@ public class StubInput implements Input {
     }
 
     @Override
-    public int ask(String question, UserAction[] actions) {
+    public int ask(String question, List<UserAction> actions) {
         int key = Integer.parseInt(ask(question));
         boolean exist = false;
-        for (int i = 0; i < actions.length; i++) {
+        for (int i = 0; i < actions.size(); i++) {
             if (i == key) {
                 exist = true;
                 break;

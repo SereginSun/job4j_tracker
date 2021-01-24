@@ -6,6 +6,8 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
@@ -19,10 +21,9 @@ public class ValidateInputTest {
                 new String[] {"one", "1"}
         );
         ValidateInput input = new ValidateInput(out, in);
-        UserAction[] actions = {
-                new FindByName(out),
-                new ExitAction()
-        };
+        List<UserAction> actions = new ArrayList<>();
+        actions.add(new FindByName(out));
+        actions.add(new ExitAction());
         int selected = input.ask("Enter menu:", actions);
         assertThat(out.toString(), is(
                 "Please enter validate data again."
@@ -38,11 +39,10 @@ public class ValidateInputTest {
                 new String[] {"0", "1", "2"}
         );
         ValidateInput input = new ValidateInput(out, in);
-        UserAction[] actions = {
-                new CreateItem(out),
-                new FindByName(out),
-                new ExitAction()
-        };
+        List<UserAction> actions = new ArrayList<>();
+        actions.add(new CreateItem(out));
+        actions.add(new FindByName(out));
+        actions.add(new ExitAction());
         int firstSelected = input.ask("Enter menu:", actions);
         assertThat(firstSelected, is(0));
         int secondSelected = input.ask("Enter menu:", actions);
@@ -58,11 +58,10 @@ public class ValidateInputTest {
                 new String[] {"4", "-1", "1"}
         );
         ValidateInput input = new ValidateInput(out, in);
-        UserAction[] actions = {
-                new CreateItem(out),
-                new FindByName(out),
-                new ExitAction()
-        };
+        List<UserAction> actions = new ArrayList<>();
+        actions.add(new CreateItem(out));
+        actions.add(new FindByName(out));
+        actions.add(new ExitAction());
         int selected = input.ask("Enter menu:", actions);
         assertThat(selected, is(1));
     }

@@ -23,6 +23,7 @@ public class EditItem implements UserAction {
         } else {
             out.println("No item found with the specified ID.");
         }
+        out.println("");
         return true;
     }
 }
