@@ -2,6 +2,11 @@ package ru.job4j.bank;
 
 import java.util.Objects;
 
+/**
+ * The class describes the model of the user's bank account in the bank.
+ * @author Seregin Vladimir
+ * @version 1.0
+ */
 public class Account {
     private String requisite;
     private double balance;
