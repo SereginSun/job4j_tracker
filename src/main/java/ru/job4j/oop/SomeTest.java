@@ -6,12 +6,7 @@ public class SomeTest {
         System.out.println(name + ":" + first);
     }
 
-//    public static void someDo(String name, int first) {
-//        System.out.println(name + first);
-//    }
-
     public static void main(String[] args) {
         someDo("num", 24);
-//        someDo(50, 100);
     }
 }

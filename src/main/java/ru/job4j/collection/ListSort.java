@@ -8,14 +8,6 @@ public class ListSort {
         System.out.println(list);
         Collections.sort(list);
         System.out.println(list);
-//        Integer first = 1;
-//        Integer second = 2;
-//        int result = first.compareTo(second);
-//        System.out.println(result);
-//        String petr = "Petr";
-//        String ivan = "Ivan";
-//        int result2 = petr.compareTo(ivan);
-//        System.out.println(result2);
         list.sort(Collections.reverseOrder());
         System.out.println(list);
     }

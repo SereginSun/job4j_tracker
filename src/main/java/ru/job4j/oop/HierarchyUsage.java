@@ -9,6 +9,5 @@ public class HierarchyUsage {
         Car carFromObject = (Car) ocar;
 
         Object bicycle = new Bicycle();
-//        Car cb = (Car) bicycle;
     }
 }
